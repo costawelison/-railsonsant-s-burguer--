@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Santos Burguer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topo">
+    <img src="imagens/banner.jpg" class="banner">
+
+    <div class="overlay">
+        <img src="imagens/logo.png" class="logo">
+        <h1>Sant's Burguer</h1>
+        <p>Vitória do Xingu - Pará</p>
+    </div>
+</header>
+
+<section class="cliente">
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="text" id="endereco" placeholder="Seu endereço">
+    <textarea id="obs" placeholder="Observação: por exemplo:(sem cebola)"></textarea>
+</section>
+
+<section class="menu">
+<p id="statusLoja"></p>
+<h2>🍔 Hambúrgueres</h2>
+
+<div class="card">
+    <img src="imagens/xburguer.png">
+
+    <div class="info">
+        <h3>X-Burguer</h3>
+        <p>Pão, carne, queijo, salada e molho da casa</p>
+        <span>R$ 16</span>
+
+        <div class="controle">
+            <button onclick="alterarQtd('xburguer',16,-1)">-</button>
+            <span id="qtd-xburguer">0</span>
+            <button onclick="alterarQtd('xburguer',16,1)">+</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="imagens/xcalabresa.png">
+
+    <div class="info">
+        <h3>X-Calabresa</h3>
+        <p>Pão, calabresa, carne, ovo, queijo, salada e molho da casa</p>
+        <span>R$ 18</span>
+
+        <div class="controle">
+            <button onclick="alterarQtd('xcalabresa',18,-1)">-</button>
+            <span id="qtd-xcalabresa">0</span>
+            <button onclick="alterarQtd('xcalabresa',18,1)">+</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="imagens/xbacon.png">
+
+    <div class="info">
+        <h3>X-Bacon</h3>
+        <p>Pão, bacon, carne, ovo, queijo, salada e molho da casa</p>
+        <span>R$ 20</span>
+
+        <div class="controle">
+            <button onclick="alterarQtd('xbacon',20,-1)">-</button>
+            <span id="qtd-xbacon">0</span>
+            <button onclick="alterarQtd('xbacon',20,1)">+</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <img src="imagens/xtudo.png">
+
+    <div class="info">
+        <h3>X-Tudo</h3>
+        <p>Pão, bacon, calabresa, carne, ovo, queijo, salada e molho da casa</p>
+        <span>R$ 24</span>
+
+        <div class="controle">
+            <button onclick="alterarQtd('xtudo',24,-1)">-</button>
+            <span id="qtd-xtudo">0</span>
+            <button onclick="alterarQtd('xtudo',24,1)">+</button>
+        </div>
+    </div>
+</div>
+
+<h2>🥤 Bebidas</h2>
+
+<div class="card">
+    <h3>Lata 350ml</h3>
+    <select id="lata">
+        <option>Uva</option>
+        <option>Laranja</option>
+        <option>Coca-Cola</option>
+    </select>
+    <span>R$ 5</span>
+
+    <div class="controle">
+        <button onclick="alterarQtd('Lata350',5,-1,'lata')">-</button>
+        <span id="qtd-Lata350">0</span>
+        <button onclick="alterarQtd('Lata350',5,1,'lata')">+</button>
+    </div>
+</div>
+
+<div class="card">
+    <h3>1 Litro</h3>
+    <select id="litro">
+        <option>Guaraná</option>
+        <option>Pepsi</option>
+        <option>Coca-Cola</option>
+    </select>
+    <span>R$ 8</span>
+
+    <div class="controle">
+        <button onclick="alterarQtd('Refri1L',8,-1,'litro')">-</button>
+        <span id="qtd-Refri1L">0</span>
+        <button onclick="alterarQtd('Refri1L',8,1,'litro')">+</button>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Pet 200ml</h3>
+    <select id="pet">
+        <option>Guaraná</option>
+        <option>Pepsi</option>
+    </select>
+    <span>R$ 3.50</span>
+
+    <div class="controle">
+        <button onclick="alterarQtd('Refri200',3.5,-1,'pet')">-</button>
+        <span id="qtd-Refri200">0</span>
+        <button onclick="alterarQtd('Refri200',3.5,1,'pet')">+</button>
+    </div>
+</div>
+
+</section>
+
+<section class="cart">
+<h2>🛒 Pedido</h2>
+<ul id="cart-list"></ul>
+
+<p>Entrega: R$ 0,00</p>
+<h3 id="total">Total: R$ 0</h3>
+
+<h3>💳 Pagamento</h3>
+
+<select id="pagamento" onchange="verificarPagamento()">
+    <option value="">Escolha</option>
+    <option value="Dinheiro">Dinheiro</option>
+    <option value="Pix">Pix</option>
+    <option value="Cartão">Cartão</option>
+</select>
+
+<!-- TROCO (só aparece no dinheiro) -->
+<div id="areaTroco" style="display:none;">
+    <input type="text" id="troco" placeholder="Precisa de troco? Ex: 50,00">
+</div>
+
+<!-- BOTÃO FINAL -->
+<button onclick="enviarWhats()" class="finalizar">
+    Finalizar Pedido
+</button>
+</section>
+
+<script src="script.js"></script>
+<a class="btn-whats" onclick="enviarWhats()">📲</a>
+<footer class="rodape">
+    <p>🍔 Sant's Burguer</p>
+    <p>📍 Vitória do Xingu - Pará</p>
+    <p>📞 Peça pelo WhatsApp</p>
+</footer>
+</body>
+</html>
