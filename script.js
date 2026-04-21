@@ -13,7 +13,7 @@ function alterarQtd(nome, preco, change, selectId) {
     }
 
     if (!cart[nomeFinal]) {
-        cart[nomeFinal] = { qtd: 0, preco: preco };
+        cart[nomeFinal] = {qtd: 0, preco: preco };
     }
 
     cart[nomeFinal].qtd += change;
@@ -22,22 +22,28 @@ function alterarQtd(nome, preco, change, selectId) {
         delete cart[nomeFinal];
     }
 
-    atualizarTela(nome);
+    // Atualiza a tela com o nome base, para que todos os sabores sejam atualizados
+    atualizarTela(nome); 
     atualizarCarrinho();
 }
 
 // ATUALIZA QUANTIDADE NA TELA
 function atualizarTela(nomeBase) {
-    let el = document.getElementById("qtd-" + nomeBase);
     let totalQtd = 0;
 
     for (let item in cart) {
-        if (item.includes(nomeBase)) {
+        // Verifica se o item no carrinho começa com o nomeBase
+        // Isso garante que estamos somando todos os sabores de uma mesma base
+        if (item.startsWith(nomeBase)) { 
             totalQtd += cart[item].qtd;
         }
     }
 
-    if (el) el.textContent = totalQtd;
+    // Atualiza o elemento HTML que mostra a quantidade total para essa base de item
+    let el = document.getElementById("qtd-" + nomeBase);
+    if (el) {
+        el.textContent = totalQtd;
+    }
 }
 
 // ATUALIZA CARRINHO
