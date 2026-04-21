@@ -117,11 +117,9 @@
     <select id="litro">
         <option>Guaraná</option>
         <option>Pepsi</option>
-        </select>
-    <span>R$ 8</span>
         <option>Coca-Cola</option>
     </select>
-    <span>R$ 10</span>
+    <span>R$ 8</span>
 
     <div class="controle">
         <button onclick="alterarQtd('Refri1L',8,-1,'litro')">-</button>
@@ -129,7 +127,21 @@
         <button onclick="alterarQtd('Refri1L',8,1,'litro')">+</button>
     </div>
 </div>
+    
+<div class="card">
+    <h3>1 Litro</h3>
+    <select id="litro">
+        <option>Coca-Cola</option>
+    </select>
+    <span>R$ 10</span>
 
+    <div class="controle">
+        <button onclick="alterarQtd('Refri1L',10,-1,'litro')">-</button>
+        <span id="qtd-Refri1L">0</span>
+        <button onclick="alterarQtd('Refri1L',10,1,'litro')">+</button>
+    </div>
+</div>
+    
 <div class="card">
     <h3>Pet 200ml</h3>
     <select id="pet">
